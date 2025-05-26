@@ -16,24 +16,30 @@
 
 #define HEIGHT 720
 #define WIDTH 480
-#define TILE_SIZE 16
+#define TILE_SIZE 65
+
+
+typedef struct s_image
+{
+	void *img;
+	char *imgdest;
+	// char *addr;
+	// int bits_per_pixels;
+	// int line_length;
+	// int endian;
+	// int x;
+	// int y;
+	int width;
+	int height;
+}t_image;
 
 typedef struct s_data
 {
 	void *mlx;
 	void *mlx_win;
+	t_image	img;
 }t_data;
 
-typedef struct s_image
-{
-	void *img;
-	char *addr;
-	int bits_per_pixels;
-	int line_length;
-	int endian;
-	int x;
-	int y;
-}t_image;
 
 #include "gnl/get_next_line.h"
 
