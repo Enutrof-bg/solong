@@ -191,9 +191,17 @@ int ft_map_check_components(t_data *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == 'E')
+			{
 				data->count_e++;
+				data->exit_x = i;
+				data->exit_y = j;
+			}
 			else if (data->map[i][j] == 'P')
+			{
 				data->count_p++;
+				data->player_x = i;
+				data->player_y = j;
+			}
 			else if (data->map[i][j] == 'C')
 				data->count_c++;
 			else if (data->map[i][j] != '0' && data->map[i][j] != '1')
