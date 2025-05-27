@@ -16,13 +16,17 @@
 
 #define HEIGHT 720
 #define WIDTH 480
-#define TILE_SIZE 65
+#define TILE_SIZE 64
 
 
 typedef struct s_image
 {
-	void *img;
-	char *imgdest;
+	void *img_grass;
+	char *dest_grass;
+	void *img_wall;
+	char *dest_wall;
+	void *img_char;
+	char *dest_char;
 	// char *addr;
 	// int bits_per_pixels;
 	// int line_length;
@@ -33,10 +37,23 @@ typedef struct s_image
 	int height;
 }t_image;
 
+// typedef struct s_map
+// {
+// 	int count_e;
+// 	int count_p;
+// 	int count_c;
+// }t_map;
+
 typedef struct s_data
 {
 	void *mlx;
 	void *mlx_win;
+	char **map;
+	int count_e;
+	int count_p;
+	int count_c;
+	int map_length;
+	int map_height;
 	t_image	img;
 }t_data;
 
@@ -50,7 +67,11 @@ typedef struct s_data
 # include <stdio.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <unistd.h>
 
 char	*ft_strdup(char *s);
+char	**ft_split(char const *s, char c);
+char **ft_open_map(t_data *data, char *filename);
+void ft_map_check(t_data *data, char *filename);
 
 #endif
