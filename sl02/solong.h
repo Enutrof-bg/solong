@@ -28,6 +28,8 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
+# define KEY_ESC 65307
+
 typedef struct s_image
 {
 	void *img_grass;
@@ -51,6 +53,28 @@ typedef struct s_image
 	int width;
 	int height;
 }t_image;
+
+typedef struct s_anim
+{
+	// void *img_anim1;
+	// void *img_anim2;
+	// void *img_anim3;
+	// void *img_anim4;
+	// void *img_anim5;
+	// void *img_anim6;
+	// void *img_anim7;
+	// void *img_anim8;
+	// char *dest_anim1;
+	// char *dest_anim2;
+	// char *dest_anim3;
+	// char *dest_anim4;
+	// char *dest_anim5;
+	// char *dest_anim6;
+	// char *dest_anim7;
+	// char *dest_anim8;
+	void *img_anim[8];
+	char *dest_anim[8];
+}t_anim;
 
 // typedef struct s_map
 // {
@@ -76,6 +100,7 @@ typedef struct s_data
 	int exit_x;
 	int exit_y;
 	t_image	img;
+	t_anim anim;
 }t_data;
 
 
@@ -95,5 +120,6 @@ char	**ft_split(char const *s, char c);
 char **ft_open_map(t_data *data, char *filename);
 void ft_map_check(t_data *data, char *filename);
 char	*ft_itoa(int n);
+int	ft_printf(const char *str, ...);
 
 #endif

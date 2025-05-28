@@ -56,11 +56,11 @@ void	print_img_exit(t_data *data, t_image *img, int x, int y)
 		img->width * x, img->height * y);
 }
 
-void	print_img_exit_open(t_data *data, t_image *img, int x, int y)
-{
-	mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_exit_open,
-		img->width * x, img->height * y);
-}
+// void	print_img_exit_open(t_data *data, t_image *img, int x, int y)
+// {
+// 	mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_exit_open,
+// 		img->width * x, img->height * y);
+// }
 
 int	ft_move_up(t_data *data)
 {
@@ -70,8 +70,8 @@ int	ft_move_up(t_data *data)
 			return (0);
 		if (data->map[data->player_x - 1][data->player_y] == 'C')
 			data->player_collect++;
-		if (data->player_collect == 2)
-			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
+		// if (data->player_collect == 2)
+		// 	print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
 		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == 2)
 		{
 			data->player_end = 1;
@@ -93,8 +93,8 @@ int	ft_move_down(t_data *data)
 			return (0);
 		if (data->map[data->player_x + 1][data->player_y] == 'C')
 			data->player_collect++;
-		if (data->player_collect == 2)
-			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
+		// if (data->player_collect == 2)
+		// 	print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
 		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == 2)
 		{
 			data->player_end = 1;
@@ -116,8 +116,8 @@ int	ft_move_left(t_data *data)
 			return (0);
 		if (data->map[data->player_x][data->player_y - 1] == 'C')
 			data->player_collect++;
-		if (data->player_collect == 2)
-			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
+		// if (data->player_collect == 2)
+		// 	print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
 		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == 2)
 		{
 			data->player_end = 1;
@@ -140,8 +140,8 @@ int	ft_move_right(t_data *data)
 			return (0);
 		if (data->map[data->player_x][data->player_y + 1] == 'C')
 			data->player_collect++;
-		if (data->player_collect == 2)
-			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
+		// if (data->player_collect == 2)
+		// 	print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
 		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == 2)
 		{
 			data->player_end = 1;
@@ -159,7 +159,6 @@ int	ft_move_right(t_data *data)
 int on_keypress(int keysym, t_data *data)
 {
 	static int count = 0;
-	char *temp;
 	printf("Pressed key:%d ", keysym);
 	if (keysym == KEY_W || keysym == KEY_UP)
 		count = count + ft_move_up(data);
@@ -172,9 +171,11 @@ int on_keypress(int keysym, t_data *data)
 	printf("PM:%d\n", count);
 	if (data->player_end == 1)
 		exit(0);
-	temp = ft_itoa(count);
-	mlx_string_put(data->mlx, data->mlx_win, HEIGHT * 0.1, WIDTH * 0.1, 0x00FF0000, temp);
-	free(temp);
+	// if (data->player_collect == 2)
+	// {
+	// 	print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
+	// }
+	// mlx_string_put(data->mlx, data->mlx_win, HEIGHT * 0.1, WIDTH * 0.1, 0x00FF0000, "keysym");
 	return (0);
 }
 
@@ -201,6 +202,7 @@ void set_img(t_data *data)
 	data->img.width = 64;
 	data->img.height = 64;
 	data->player_end = 0;
+	data->player_collect = 0;
 	data->img.dest_grass = "./sproutxpm/Sol.xpm";
 	data->img.img_grass = mlx_xpm_file_to_image(data->mlx, data->img.dest_grass, &data->img.width, &data->img.height);
 	if (!data->img.img_grass)
@@ -241,13 +243,13 @@ void set_img(t_data *data)
 	    exit(EXIT_FAILURE);
 	}
 
-	data->img.dest_exit_open = "./sproutxpm/open.xpm";
-	data->img.img_exit_open = mlx_xpm_file_to_image(data->mlx, data->img.dest_exit_open, &data->img.width, &data->img.height);
-	if (!data->img.img_exit_open)
-	{
-	    printf("Erreur: Impossible de charger l'image XPM\n");
-	    exit(EXIT_FAILURE);
-	}
+	// data->img.dest_exit_open = "./sproutxpm/exit_open.xpm";
+	// data->img.img_exit_open = mlx_xpm_file_to_image(data->mlx, data->img.dest_exit_open, &data->img.width, &data->img.height);
+	// if (!data->img.img_exit_open)
+	// {
+	//     printf("Erreur: Impossible de charger l'image XPM\n");
+	//     exit(EXIT_FAILURE);
+	// }
 }
 
 void ft_printf_map(t_data *data)
