@@ -121,5 +121,6 @@ char **ft_open_map(t_data *data, char *filename);
 void ft_map_check(t_data *data, char *filename);
 char	*ft_itoa(int n);
 int	ft_printf(const char *str, ...);
+void ft_map_invalid(char **map);
 
 #endif

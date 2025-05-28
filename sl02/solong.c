@@ -18,6 +18,7 @@ int on_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
+	ft_map_invalid(data->map);
 	free(data->mlx);
 	exit(0);
 	return (0);
@@ -63,13 +64,13 @@ int	ft_move_up(t_data *data)
 {
 	if (data->map[data->player_x - 1][data->player_y] != '1')
 	{
-		if (data->map[data->player_x - 1][data->player_y] == 'E' && data->player_collect < 2)
+		if (data->map[data->player_x - 1][data->player_y] == 'E' && data->player_collect < data->count_c)
 			return (0);
 		if (data->map[data->player_x - 1][data->player_y] == 'C')
 			data->player_collect++;
 		if (data->player_collect == data->count_c)
 			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
-		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == data->count_c)
+		if (data->map[data->player_x - 1][data->player_y] == 'E' && data->player_collect == data->count_c)
 		{
 			data->player_end = 1;
 			return (1);
@@ -86,13 +87,13 @@ int	ft_move_down(t_data *data)
 {
 	if (data->map[data->player_x + 1][data->player_y] != '1')
 	{
-		if (data->map[data->player_x + 1][data->player_y] == 'E' && data->player_collect < 2)
+		if (data->map[data->player_x + 1][data->player_y] == 'E' && data->player_collect < data->count_c)
 			return (0);
 		if (data->map[data->player_x + 1][data->player_y] == 'C')
 			data->player_collect++;
 		if (data->player_collect == data->count_c)
 			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
-		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == data->count_c)
+		if (data->map[data->player_x + 1][data->player_y] == 'E' && data->player_collect == data->count_c)
 		{
 			data->player_end = 1;
 			return (1);
@@ -109,7 +110,7 @@ int	ft_move_left(t_data *data)
 {
 	if (data->map[data->player_x][data->player_y - 1] != '1')
 	{		
-		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect < 2)
+		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect < data->count_c)
 			return (0);
 		if (data->map[data->player_x][data->player_y - 1] == 'C')
 			data->player_collect++;
@@ -132,13 +133,13 @@ int	ft_move_right(t_data *data)
 {
 	if (data->map[data->player_x][data->player_y + 1] != '1')
 	{		
-		if (data->map[data->player_x][data->player_y + 1] == 'E' && data->player_collect < 2)
+		if (data->map[data->player_x][data->player_y + 1] == 'E' && data->player_collect < data->count_c)
 			return (0);
 		if (data->map[data->player_x][data->player_y + 1] == 'C')
 			data->player_collect++;
 		if (data->player_collect == data->count_c)
 			print_img_exit_open(data, &data->img, data->exit_y, data->exit_x);
-		if (data->map[data->player_x][data->player_y - 1] == 'E' && data->player_collect == data->count_c)
+		if (data->map[data->player_x][data->player_y + 1] == 'E' && data->player_collect == data->count_c)
 		{
 			data->player_end = 1;
 			return (1);
@@ -165,13 +166,17 @@ int on_keypress(int keysym, t_data *data)
 		count = count + ft_move_left(data);
 	if (keysym == KEY_D || keysym == KEY_RIGHT)
 		count = count + ft_move_right(data);
-	ft_printf("Pressed key:%d PM:%d\n", keysym, count);
+	// ft_printf("Pressed key:%d PM:%d\n", keysym, count);
+	ft_printf("PM:%d\n", count);
 	temp = ft_itoa(count);
 	print_img_wall(data, &data->img, 0, 0);
 	mlx_string_put(data->mlx, data->mlx_win, 32, 32, 0x00FF0000, temp);
 	free(temp);
 	if (data->player_end == 1)
-		exit(0);
+	{
+		on_destroy(data);
+		// exit(0);
+	}
 	return (0);
 }
 /*
@@ -332,7 +337,7 @@ int main()
 		// ft_map_invalid(data.map);
 	// }
 	set_img(&data);
-	ft_printf("%d %d\n", data.img.width, data.img.height);
+	// ft_printf("%d %d\n", data.img.width, data.img.height);
 	ft_printf_map(&data);
 	// set_anim_action(&data);
 	mlx_loop(data.mlx);

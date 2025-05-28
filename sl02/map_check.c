@@ -13,47 +13,6 @@
 #include "solong.h"
 //caca map_check.c gnl/get_next_line.c gnl/get_next_line_utils.c solong_utils.c ft_split.c
 
-// int main(void)
-// {
-// 	int fd;
-// 	char *line = NULL;
-// 	int i;
-// 	int len;
-// 	char **tab;
-// 	int index;
-
-// 	index = 0;
-// 	i = 0;
-// 	len = 0;
-// 	fd = open("maps.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		len = ft_strlen(line);
-
-// 		ft_printf("%d %s",len, line);
-
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		i++;
-// 		// len = ft_strlen(line);
-// 	}
-// 	free(line);
-// 	ft_printf("\n%d\n", i);
-// 	close(fd);
-// 	fd = open("maps.txt", O_RDONLY);
-// 	tab = malloc(sizeof(char *) * (i + 1));
-// 	// if (!tab)
-// 	// 	return (NULL);
-
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		tab[index] = ft_strdup(line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }
 void ft_map_invalid(char **map)
 {
 	int i;
@@ -268,15 +227,15 @@ void ft_map_check(t_data *data, char *filename)
 		ft_map_invalid(data->map);
 	if (ft_map_check_components(data) == 1)
 		ft_map_invalid(data->map);
-	ft_printf("map_height:%d\nmap_length:%d\n", data->map_height, data->map_length);
-	ft_printf("e:%d c:%d p:%d\n", data->count_e, data->count_c, data->count_p);
+	// ft_printf("map_height:%d\nmap_length:%d\n", data->map_height, data->map_length);
+	// ft_printf("e:%d c:%d p:%d\n", data->count_e, data->count_c, data->count_p);
 	// ft_map_path(data);
-	// int i = 0;
-	// while (data->map[i])
-	// {
-	// 	ft_printf("%s\n", data->map[i]);
-	// 	i++;
-	// }
+	int i = 0;
+	while (data->map[i])
+	{
+		ft_printf("%s\n", data->map[i]);
+		i++;
+	}
 }
 
 // int main(int argc, char **argv)
@@ -293,6 +252,7 @@ void ft_map_check(t_data *data, char *filename)
 // 		t_data	data;
 
 // 		ft_map_check(&data, argv[1]);
+// 		// ft_map_invalid(data.map);
 // 		// ft_set_map(&data);
 // 		// data.map = ft_open_map(&data, argv[1]);
 // 		// if (ft_map_test_wall(&data) == 1)
@@ -303,7 +263,7 @@ void ft_map_check(t_data *data, char *filename)
 // 		// ft_printf("e:%d c:%d p:%d\n", data.count_e, data.count_c, data.count_p);
 // 	}
 // 	// map = ft_split(test, '\n');
-// 	// ft_map_invalid(map);
+	
 // 	// ft_map_size(&data, map);
 // 	// ft_map_invalid(map);
 // 	// free(test);
