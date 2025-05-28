@@ -11,14 +11,23 @@
 /* ************************************************************************** */
 
 #include "solong.h"
-//caca solong.c -Lminilibx-linux -lmlx -lX11 -lXext
-//caca solong.c gnl/get_next_line.c gnl/get_next_line_utils.c solong_utils.c ft_split.c -Lminilibx-linux -lmlx -lX11 -lXext
-//caca solong.c gnl/get_next_line.c gnl/get_next_line_utils.c solong_utils.c ft_split.c map_check.c -Lminilibx-linux -lmlx -lX11 -lXext 
+
 int on_destroy(t_data *data)
 {
+	// free(data->img.img_grass.img);
+	// free(data->img.img_grass.colors);
+	// free(data->img.img_grass.colors_direct);
+	// free(data->img.img_grass);
+	free(data->img.img_grass);
+	free(data->img.img_wall);
+	free(data->img.img_char);
+	free(data->img.img_key);
+	free(data->img.img_exit);
+	free(data->img.img_exit_open);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	ft_map_invalid(data->map);
+	free(data->mlx_win);
 	free(data->mlx);
 	exit(0);
 	return (0);
@@ -239,6 +248,7 @@ void set_img(t_data *data)
 	data->img.width = 64;
 	data->img.height = 64;
 	data->player_end = 0;
+	data->player_collect = 0;
 	data->img.dest_grass = "./sproutxpm/Sol.xpm";
 	data->img.img_grass = mlx_xpm_file_to_image(data->mlx, data->img.dest_grass, &data->img.width, &data->img.height);
 	if (!data->img.img_grass)

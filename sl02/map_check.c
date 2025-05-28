@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "solong.h"
-//caca map_check.c gnl/get_next_line.c gnl/get_next_line_utils.c solong_utils.c ft_split.c
 
-void ft_map_invalid(char **map)
+void	ft_map_invalid(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -26,25 +25,22 @@ void ft_map_invalid(char **map)
 		i--;
 		free(map[i]);
 	}
-	// {
-	// 	free(map[i]);
-	// 	i++;
-	// }
 	free(map);
 	exit(1);
 }
 
-char *ft_open(t_data *data, char *filename)
+char	*ft_open(t_data *data, char *filename)
 {
-	char *str;
-	char *result;
-	char *temp;
-	int fd = open(filename, O_RDONLY);
+	char	*str;
+	char	*result;
+	char	*temp;
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
 	data->map_height = 0;
 	//ERREUR FD //TODO
 	result = ft_strdup("");
 	//erreur malloc todo
-
 	str = get_next_line(fd);
 	while (str != NULL)
 	{
@@ -60,14 +56,13 @@ char *ft_open(t_data *data, char *filename)
 	return (result);
 }
 
-void ft_map_size(t_data *data, char **map)
+void	ft_map_size(t_data *data, char **map)
 {
-	int i;
-	int j;
-	int len;
+	int	i;
+	int	j;
+	int	len;
 
 	len = ft_strlen(map[0]);
-	// ft_printf("len:%d\n",len);
 	i = 1;
 	while (map[i])
 	{
@@ -78,7 +73,7 @@ void ft_map_size(t_data *data, char **map)
 			{
 				if ((j + 1) != len)
 				{
-					ft_printf("Map dimmensions invalides"); // a refaire TODO TODO
+					ft_printf("Map dimmensions invalides");// a refaire TODO TODO
 					ft_map_invalid(map);
 				}
 			}
@@ -102,10 +97,10 @@ char **ft_open_map(t_data *data, char *filename)
 	return (result);
 }
 
-int ft_map_test_wall(t_data *data)
+int	ft_map_test_wall(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -130,18 +125,14 @@ int	ft_map_check_components_double(t_data *data)
 {
 	if (data->count_e != 1 || data->count_p != 1 || data->count_c < 1)
 		return (ft_printf("Map components invalides"), 1); //TODO ERREUR
-	// if (data->count_p != 1)
-	// 	return (1);
-	// if (data->count_c < 1)
-	// 	return (1);
 	else
 		return (0);
 }
 
-int ft_map_check_components(t_data *data)
+int	ft_map_check_components(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -173,7 +164,7 @@ int ft_map_check_components(t_data *data)
 	return (ft_map_check_components_double(data));
 }
 
-void ft_set_map(t_data *data)
+void	ft_set_map(t_data *data)
 {
 	data->map_height = 0;
 	data->map_length = 0;
@@ -182,7 +173,21 @@ void ft_set_map(t_data *data)
 	data->count_c = 0;
 }
 
-void ft_map_path(t_data *data)
+void	ft_map_path_set(t_data *data, int i, int j)
+{
+	if (data->map[i][j] == 'P')
+		data->map[i][j] = ' ';
+	if (data->map[i][j] == ' ' && data->map[i][j + 1] != '1')
+		data->map[i][j + 1] = ' ';
+	if (data->map[i][j] == ' ' && data->map[i][j - 1] != '1')
+		data->map[i][j - 1] = ' ';
+	if (data->map[i][j] == ' ' && data->map[i + 1][j] != '1')
+		data->map[i + 1][j] = ' ';
+	if (data->map[i][j] == ' ' && data->map[i - 1][j] != '1')
+		data->map[i - 1][j] = ' ';
+}
+
+void	ft_map_path(t_data *data)
 {
 	int i;
 	int j;
@@ -197,16 +202,7 @@ void ft_map_path(t_data *data)
 			j = 0;
 			while (data->map[i][j])
 			{
-				if (data->map[i][j] == 'P')
-					data->map[i][j] = ' ';
-				if (data->map[i][j] == ' ' && data->map[i][j + 1] != '1')
-					data->map[i][j + 1] = ' ';
-				if (data->map[i][j] == ' ' && data->map[i][j - 1] != '1')
-					data->map[i][j - 1] = ' ';
-				if (data->map[i][j] == ' ' && data->map[i + 1][j] != '1')
-					data->map[i + 1][j] = ' ';
-				if (data->map[i][j] == ' ' && data->map[i - 1][j] != '1')
-					data->map[i - 1][j] = ' ';
+				ft_map_path_set(data, i, j);
 				j++;
 			}
 			i++;
@@ -229,24 +225,19 @@ void ft_map_check(t_data *data, char *filename)
 		ft_map_invalid(data->map);
 	// ft_printf("map_height:%d\nmap_length:%d\n", data->map_height, data->map_length);
 	// ft_printf("e:%d c:%d p:%d\n", data->count_e, data->count_c, data->count_p);
-	// ft_map_path(data);
-	int i = 0;
-	while (data->map[i])
-	{
-		ft_printf("%s\n", data->map[i]);
-		i++;
-	}
+
+	// ft_map_path(data); //faire une fonction qui creer une copie de char **map
+
+	// int i = 0;
+	// while (data->map[i])
+	// {
+	// 	ft_printf("%s\n", data->map[i]);
+	// 	i++;
+	// }
 }
 
 // int main(int argc, char **argv)
 // {
-	
-
-// 	// char *test;
-// 	// char **map;
-// 	// test = ft_open(&data, "maps.txt");
-// 	// ft_printf("%s\n\n", test);
-
 // 	if (argc == 2)
 // 	{
 // 		t_data	data;
@@ -263,11 +254,9 @@ void ft_map_check(t_data *data, char *filename)
 // 		// ft_printf("e:%d c:%d p:%d\n", data.count_e, data.count_c, data.count_p);
 // 	}
 // 	// map = ft_split(test, '\n');
-	
 // 	// ft_map_size(&data, map);
 // 	// ft_map_invalid(map);
 // 	// free(test);
-	
 // 	// int a = 0;
 // 	// while (map[a])
 // 	// {

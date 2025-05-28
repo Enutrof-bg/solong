@@ -50,31 +50,31 @@ typedef struct s_image
 	// int endian;
 	// int x;
 	// int y;
-	int width;
-	int height;
+	int width;//set
+	int height;//set
 }t_image;
 
-typedef struct s_anim
-{
-	// void *img_anim1;
-	// void *img_anim2;
-	// void *img_anim3;
-	// void *img_anim4;
-	// void *img_anim5;
-	// void *img_anim6;
-	// void *img_anim7;
-	// void *img_anim8;
-	// char *dest_anim1;
-	// char *dest_anim2;
-	// char *dest_anim3;
-	// char *dest_anim4;
-	// char *dest_anim5;
-	// char *dest_anim6;
-	// char *dest_anim7;
-	// char *dest_anim8;
-	void *img_anim[8];
-	char *dest_anim[8];
-}t_anim;
+// typedef struct s_anim
+// {
+// 	// void *img_anim1;
+// 	// void *img_anim2;
+// 	// void *img_anim3;
+// 	// void *img_anim4;
+// 	// void *img_anim5;
+// 	// void *img_anim6;
+// 	// void *img_anim7;
+// 	// void *img_anim8;
+// 	// char *dest_anim1;
+// 	// char *dest_anim2;
+// 	// char *dest_anim3;
+// 	// char *dest_anim4;
+// 	// char *dest_anim5;
+// 	// char *dest_anim6;
+// 	// char *dest_anim7;
+// 	// char *dest_anim8;
+// 	void *img_anim[8];
+// 	char *dest_anim[8];
+// }t_anim;
 
 // typedef struct s_map
 // {
@@ -87,20 +87,20 @@ typedef struct s_data
 {
 	void *mlx;
 	void *mlx_win;
-	char **map;
-	int count_e;
-	int count_p;
-	int count_c;
-	int map_length;
-	int map_height;
-	int player_x;
-	int player_y;
-	int player_collect;
-	int player_end;
-	int exit_x;
-	int exit_y;
+	char **map;//set
+	int count_e;//set
+	int count_p;//set
+	int count_c;//set
+	int map_length;//set
+	int map_height;//set
+	int player_x;//set
+	int player_y;//set
+	int player_collect;//set
+	int player_end;//set
+	int exit_x;//set
+	int exit_y;//set
 	t_image	img;
-	t_anim anim;
+	// t_anim anim;
 }t_data;
 
 
