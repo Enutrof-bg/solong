@@ -29,6 +29,19 @@ void	ft_map_invalid(char **map)
 	exit(1);
 }
 
+void	ft_free_double_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 char	*ft_open(t_data *data, char *filename)
 {
 	char	*str;
@@ -173,21 +186,42 @@ void	ft_set_map(t_data *data)
 	data->count_c = 0;
 }
 
-void	ft_map_path_set(t_data *data, int i, int j)
+char **ft_copy_double_char(char **tab)
 {
-	if (data->map[i][j] == 'P')
-		data->map[i][j] = ' ';
-	if (data->map[i][j] == ' ' && data->map[i][j + 1] != '1')
-		data->map[i][j + 1] = ' ';
-	if (data->map[i][j] == ' ' && data->map[i][j - 1] != '1')
-		data->map[i][j - 1] = ' ';
-	if (data->map[i][j] == ' ' && data->map[i + 1][j] != '1')
-		data->map[i + 1][j] = ' ';
-	if (data->map[i][j] == ' ' && data->map[i - 1][j] != '1')
-		data->map[i - 1][j] = ' ';
+	int i;
+	int j;
+	char **newtab;
+
+	i = 0;
+	j = 0;
+	while (tab[i])
+		i++;
+	newtab = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (tab[i])
+	{
+		newtab[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	newtab[i] = 0;
+	return (newtab);
 }
 
-void	ft_map_path(t_data *data)
+void	ft_map_path_set(char **map, int i, int j)
+{
+	if (map[i][j] == 'P')
+		map[i][j] = ' ';
+	if (map[i][j] == ' ' && map[i][j + 1] != '1')
+		map[i][j + 1] = ' ';
+	if (map[i][j] == ' ' && map[i][j - 1] != '1')
+		map[i][j - 1] = ' ';
+	if (map[i][j] == ' ' && map[i + 1][j] != '1')
+		map[i + 1][j] = ' ';
+	if (map[i][j] == ' ' && map[i - 1][j] != '1')
+		map[i - 1][j] = ' ';
+}
+
+void	ft_map_path(t_data *data, char **map)
 {
 	int i;
 	int j;
@@ -197,26 +231,72 @@ void	ft_map_path(t_data *data)
 	while (n < data->map_length * data->map_height)
 	{
 		i = 0;
-		while (data->map[i])
+		while (map[i])
 		{
 			j = 0;
-			while (data->map[i][j])
+			while (map[i][j])
 			{
-				ft_map_path_set(data, i, j);
+				ft_map_path_set(map, i, j);
 				j++;
 			}
 			i++;
 		}
 		n++;
 	}
-	if (data->map[data->exit_x][data->exit_y] == ' ')
-		ft_printf("Path Valid\n");
+	// if (data->map[data->exit_x][data->exit_y] == ' ')
+	// 	ft_printf("Path Valid\n");
+	// else
+	// 	ft_printf("No Path To Exit\n");
+}
+
+int ft_map_key_path(char **map)
+{
+	int i;
+	int j;
+	int count;
+
+	count = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
+int ft_check_path(t_data *data)
+{
+	char **temp;
+
+	temp = ft_copy_double_char(data->map);
+	ft_map_path(data, temp);
+	// if (ft_map_key_path(data, temp) > 0)
+	// {
+
+	// }
+	if (temp[data->exit_x][data->exit_y] == ' ' && ft_map_key_path(temp) == 0)
+	{
+		ft_free_double_tab(temp);
+		return (0);
+	}
 	else
+	{
 		ft_printf("No Path To Exit\n");
+		ft_free_double_tab(temp);
+		return (1);
+	}
 }
 
 void ft_map_check(t_data *data, char *filename)
 {
+
 	ft_set_map(data);
 	data->map = ft_open_map(data, filename);
 	if (ft_map_test_wall(data) == 1)
@@ -225,7 +305,8 @@ void ft_map_check(t_data *data, char *filename)
 		ft_map_invalid(data->map);
 	// ft_printf("map_height:%d\nmap_length:%d\n", data->map_height, data->map_length);
 	// ft_printf("e:%d c:%d p:%d\n", data->count_e, data->count_c, data->count_p);
-
+	if (ft_check_path(data) == 1)
+		ft_map_invalid(data->map);
 	// ft_map_path(data); //faire une fonction qui creer une copie de char **map
 
 	// int i = 0;

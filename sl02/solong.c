@@ -323,32 +323,35 @@ void ft_printf_map(t_data *data)
 	}
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	t_data	data;
 
-	ft_map_check(&data, "maps.ber");
-
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (1);
-	data.mlx_win = mlx_new_window(data.mlx, TILE_SIZE * data.map_length, TILE_SIZE * data.map_height, "Hello world");
-	if (!data.mlx_win)
+	if (argc == 2)
 	{
-		mlx_destroy_display(data.mlx);
-		return (free(data.mlx), 1);
+		ft_map_check(&data, argv[1]);
+
+		data.mlx = mlx_init();
+		if (!data.mlx)
+			return (1);
+		data.mlx_win = mlx_new_window(data.mlx, TILE_SIZE * data.map_length, TILE_SIZE * data.map_height, "Hello world");
+		if (!data.mlx_win)
+		{
+			mlx_destroy_display(data.mlx);
+			return (free(data.mlx), 1);
+		}
+		// mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
+		mlx_key_hook(data.mlx_win,&on_keypress, &data);
+		mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+		// if (argc == 2)
+		// {
+			// ft_map_check(&data, "maps.ber");
+			// ft_map_invalid(data.map);
+		// }
+		set_img(&data);
+		// ft_printf("%d %d\n", data.img.width, data.img.height);
+		ft_printf_map(&data);
+		// set_anim_action(&data);
+		mlx_loop(data.mlx);
 	}
-	// mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-	mlx_key_hook(data.mlx_win,&on_keypress, &data);
-	mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
-	// if (argc == 2)
-	// {
-		// ft_map_check(&data, "maps.ber");
-		// ft_map_invalid(data.map);
-	// }
-	set_img(&data);
-	// ft_printf("%d %d\n", data.img.width, data.img.height);
-	ft_printf_map(&data);
-	// set_anim_action(&data);
-	mlx_loop(data.mlx);
 }

@@ -62,7 +62,7 @@ clean:
 	ft_printf/ft_putnbr.o ft_printf/ft_putptr.o ft_printf/ft_putunsigned.o
 
 fclean: clean
-	rm -f solong
+	rm -f so_long
 
 re: fclean
 	make
