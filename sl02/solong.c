@@ -40,7 +40,7 @@ int on_destroy(t_data *data)
 	mlx_destroy_display(data->mlx);
 	// ft_map_invalid(data->map);
 	ft_free_double_tab(data->map);
-	free(data->mlx_win);
+	// free(data->mlx_win);
 	free(data->mlx);
 	exit(0);
 	return (0);
