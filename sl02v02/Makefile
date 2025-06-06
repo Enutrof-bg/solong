@@ -27,6 +27,7 @@ ${DIRPRINT}/ft_putnbr.c ${DIRPRINT}/ft_putptr.c ${DIRPRINT}/ft_putunsigned.c
 
 SRC = ${FILE:.c=.o}
 
+NAME = so_long
 
 # FILE2 = map_check.c solong_utils.c ft_split.c ft_itoa.c\
 # ${DIRGNL}/get_next_line.c ${DIRGNL}/get_next_line_utils.c\
@@ -41,13 +42,13 @@ SRC = ${FILE:.c=.o}
 # ${DIRPRINT}/ft_putnbr.c ${DIRPRINT}/ft_putptr.c ${DIRPRINT}/ft_putunsigned.c
 # SRCPRINT = ${FILEPRINT:.c=${DIRPRINT}.o}
 
-all: solong
+all: ${NAME}
 
 # map: ${MAPCHECK}
 # 	${CC} ${CFLAGS} $^ ${MLX} -o map
 
-solong: ${SRC}
-	${CC} ${CFLAGS} $^ ${MLX} -o so_long
+${NAME}: ${SRC}
+	${CC} ${CFLAGS} $^ ${MLX} -o $@
 
 %.o:%.c
 	${CC} ${CFLAGS} -c $< -o $@
