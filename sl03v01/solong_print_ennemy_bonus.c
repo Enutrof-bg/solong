@@ -17,3 +17,9 @@ void	print_img_ennemy(t_data *data, t_image *img, int x, int y)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_ennemy,
 		img->width * x, img->height * y);
 }
+
+void	print_img_ennemy_mort(t_data *data, t_image *img, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_ennemy_mort,
+		img->width * x, img->height * y);
+}

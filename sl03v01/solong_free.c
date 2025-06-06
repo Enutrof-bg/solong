@@ -28,6 +28,8 @@ int	on_destroy(t_data *data)
 		mlx_destroy_image(data->mlx, data->img.img_exit_open);
 	if (data->img.img_ennemy)
 		mlx_destroy_image(data->mlx, data->img.img_ennemy);
+	if (data->img.img_ennemy_mort)
+		mlx_destroy_image(data->mlx, data->img.img_ennemy_mort);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	if (data->map)

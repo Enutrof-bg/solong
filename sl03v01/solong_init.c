@@ -21,6 +21,7 @@ void	set_img(t_data *data)
 	data->ennemy_x = 10;
 	data->ennemy_y = 10;
 	data->img.img_ennemy = NULL;
+	data->img.img_ennemy_mort = NULL;
 	data->img.img_grass = NULL;
 	data->img.img_wall = NULL;
 	data->img.img_char = NULL;
@@ -34,6 +35,7 @@ void	set_img(t_data *data)
 	ft_get_img_exit(data);
 	ft_get_img_exit_open(data);
 	ft_get_img_ennemy(data);
+	ft_get_img_ennemy_mort(data);
 }
 
 void	ft_printf_map(t_data *data)
@@ -61,5 +63,6 @@ void	ft_printf_map(t_data *data)
 		}
 		i++;
 	}
-	print_img_ennemy(data, &data->img, 10, 10);
+	ft_set_ennemy(data);
+	ft_set_ennemy_mort(data);
 }

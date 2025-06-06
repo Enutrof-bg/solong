@@ -68,9 +68,12 @@ int	ft_move_up(t_data *data)
 			return (1);
 		}
 		print_img_grass(data, &data->img, data->player_y, data->player_x);
-		print_img_char(data, &data->img, data->player_y, data->player_x -1);
+		print_img_char(data, &data->img, data->player_y, data->player_x - 1);
 		data->player_x--;
+		ft_check_dead(data);
 		ft_ennemy_move(data);
+		ft_ennemy_move_mort(data);
+		ft_check_dead(data);
 		return (1);
 	}
 	return (0);
@@ -96,8 +99,10 @@ int	ft_move_down(t_data *data)
 		print_img_grass(data, &data->img, data->player_y, data->player_x);
 		print_img_char(data, &data->img, data->player_y, data->player_x + 1);
 		data->player_x++;
+		ft_check_dead(data);
 		ft_ennemy_move(data);
-
+		ft_ennemy_move_mort(data);
+		ft_check_dead(data);
 		return (1);
 	}
 	return (0);
@@ -123,8 +128,10 @@ int	ft_move_left(t_data *data)
 		print_img_grass(data, &data->img, data->player_y, data->player_x);
 		print_img_char(data, &data->img, data->player_y - 1, data->player_x);
 		data->player_y--;
+		ft_check_dead(data);
 		ft_ennemy_move(data);
-
+		ft_ennemy_move_mort(data);
+		ft_check_dead(data);
 		return (1);
 	}
 	return (0);
@@ -150,7 +157,11 @@ int	ft_move_right(t_data *data)
 		print_img_grass(data, &data->img, data->player_y, data->player_x);
 		print_img_char(data, &data->img, data->player_y + 1, data->player_x);
 		data->player_y++;
+		ft_check_dead(data);
 		ft_ennemy_move(data);
+		ft_ennemy_move_mort(data);
+		ft_check_dead(data);
+		
 		return (1);
 	}
 	return (0);
@@ -176,7 +187,7 @@ int	on_keypress(int keysym, t_data *data)
 	print_img_wall(data, &data->img, 0, 0);
 	mlx_string_put(data->mlx, data->mlx_win, 32, 32, 0x00FF0000, temp);
 	free(temp);
-	ft_check_dead(data);
+	// ft_check_dead(data);
 	if (data->player_end == 1)
 		on_destroy(data);
 	return (0);

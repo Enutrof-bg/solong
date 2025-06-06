@@ -24,3 +24,16 @@ void	ft_get_img_ennemy(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 }
+
+void	ft_get_img_ennemy_mort(t_data *data)
+{
+	data->img.dest_ennemy_mort = "./sproutxpm/mort.xpm";
+	data->img.img_ennemy_mort = mlx_xpm_file_to_image(data->mlx,
+			data->img.dest_ennemy_mort, &data->img.width, &data->img.height);
+	if (!data->img.img_ennemy_mort)
+	{
+		ft_printf("Error\nXPM file invalid\n");
+		on_destroy(data);
+		exit(EXIT_FAILURE);
+	}
+}

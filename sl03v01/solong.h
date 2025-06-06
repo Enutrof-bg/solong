@@ -55,6 +55,8 @@ typedef struct s_image
 	char	*dest_exit_open;
 	void	*img_ennemy;
 	char	*dest_ennemy;
+	void	*img_ennemy_mort;
+	char	*dest_ennemy_mort;
 	int		width;
 	int		height;
 }t_image;
@@ -73,8 +75,8 @@ typedef struct s_data
 	int		player_y;
 	int		ennemy_x;
 	int		ennemy_y;
-	// int		ennemy_x2;
-	// int		ennemy_y2;
+	int		ennemy_mort_x;
+	int		ennemy_mort_y;
 	int		player_collect;
 	int		player_end;
 	int		exit_x;
@@ -157,6 +159,12 @@ void 	ft_ennemy_move(t_data *data);
 void	print_img_ennemy(t_data *data, t_image *img, int x, int y);
 void	ft_get_img_ennemy(t_data *data);
 void	ft_check_dead(t_data *data);
+void	print_img_ennemy_mort(t_data *data, t_image *img, int x, int y);
+void ft_ennemy_move_mort(t_data *data);
+void	ft_get_img_ennemy_mort(t_data *data);
+void ft_set_ennemy(t_data *data);
+void ft_set_ennemy_mort(t_data *data);
+void ft_check_dead_mort(t_data *data);
 // void 	ft_ennemy_move_updown(t_data *data);
 
 #endif
