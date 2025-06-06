@@ -12,44 +12,6 @@
 
 #include "solong.h"
 
-// void ft_set_ennemy(t_data *data)
-// {
-// 	data->ennemy_x = 10;
-// 	data->ennemy_y = 10;
-// 	print_img_ennemy(data, &data->img, data->ennemy_y, data->ennemy_x);
-// }
-
-// void ft_ennemy_move(t_data *data)
-// {
-// 	printf("test10");
-// 	int static set = 0;
-// 	int static move = 0;
-	
-// 	printf("test1");
-// 	if (set == 0)
-// 	{
-// 		printf("test");
-// 		ft_set_ennemy(data);
-// 		set = 1;
-// 	}
-// 	if (move < 10)
-// 	{
-// 		print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
-// 		print_img_ennemy(data, &data->img, data->ennemy_y + 1, data->ennemy_x);
-// 		data->ennemy_y++;
-// 		move++;
-// 	}
-// 	else if (move < 20)
-// 	{
-// 		print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
-// 		print_img_ennemy(data, &data->img, data->ennemy_y - 1, data->ennemy_x);
-// 		data->ennemy_y--;
-// 		move++;
-// 	}
-// 	else if (move >= 20)
-// 		move = 0;
-// }
-
 int	ft_move_up(t_data *data)
 {
 	if (data->map[data->player_x - 1][data->player_y] != '1')
@@ -161,7 +123,6 @@ int	ft_move_right(t_data *data)
 		ft_ennemy_move(data);
 		ft_ennemy_move_mort(data);
 		ft_check_dead(data);
-		
 		return (1);
 	}
 	return (0);
@@ -187,7 +148,6 @@ int	on_keypress(int keysym, t_data *data)
 	print_img_wall(data, &data->img, 0, 0);
 	mlx_string_put(data->mlx, data->mlx_win, 32, 32, 0x00FF0000, temp);
 	free(temp);
-	// ft_check_dead(data);
 	if (data->player_end == 1)
 		on_destroy(data);
 	return (0);
