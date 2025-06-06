@@ -39,7 +39,8 @@ int on_destroy(t_data *data)
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	// ft_map_invalid(data->map);
-	ft_free_double_tab(data->map);
+	if (data->map)
+		ft_free_double_tab(data->map);
 	// free(data->mlx_win);
 	free(data->mlx);
 	exit(0);
@@ -267,6 +268,7 @@ void set_img(t_data *data)
 	if (!data->img.img_grass)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 
@@ -275,6 +277,7 @@ void set_img(t_data *data)
 	if (!data->img.img_wall)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 
@@ -283,6 +286,7 @@ void set_img(t_data *data)
 	if (!data->img.img_char)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 
@@ -291,6 +295,7 @@ void set_img(t_data *data)
 	if (!data->img.img_key)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 
@@ -299,6 +304,7 @@ void set_img(t_data *data)
 	if (!data->img.img_exit)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 
@@ -307,6 +313,7 @@ void set_img(t_data *data)
 	if (!data->img.img_exit_open)
 	{
 	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
 }
@@ -354,14 +361,16 @@ int main(int argc, char **argv)
 			return (free(data.mlx), 1);
 		}
 		// mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-		mlx_key_hook(data.mlx_win,&on_keypress, &data);
+
+		set_img(&data);
+		mlx_key_hook(data.mlx_win, &on_keypress, &data);
 		mlx_hook(data.mlx_win, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
 		// if (argc == 2)
 		// {
 			// ft_map_check(&data, "maps.ber");
 			// ft_map_invalid(data.map);
 		// }
-		set_img(&data);
+		// set_img(&data);
 		// ft_printf("%d %d\n", data.img.width, data.img.height);
 		ft_printf_map(&data);
 		// set_anim_action(&data);

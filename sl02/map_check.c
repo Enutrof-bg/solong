@@ -50,6 +50,11 @@ char	*ft_open(t_data *data, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Filename invalid");
+		exit(EXIT_FAILURE);
+	}	
 	data->map_height = 0;
 	//ERREUR FD //TODO
 	result = ft_strdup("");
