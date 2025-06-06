@@ -202,40 +202,40 @@ int on_keypress(int keysym, t_data *data)
 	}
 	return (0);
 }
-/*
-void set_img_anim(t_data *data)
-{
-	// data->anim.dest_anim1 = "./sproutxpm/im1.xpm";
-	// data->anim.dest_anim2 = "./sproutxpm/im2.xpm";
-	// data->anim.dest_anim3 = "./sproutxpm/im3.xpm";
-	// data->anim.dest_anim4 = "./sproutxpm/im4.xpm";
-	// data->anim.dest_anim5 = "./sproutxpm/im5.xpm";
-	// data->anim.dest_anim6 = "./sproutxpm/im6.xpm";
-	// data->anim.dest_anim7 = "./sproutxpm/im7.xpm";
-	// data->anim.dest_anim8 = "./sproutxpm/im8.xpm";
-	data->anim.dest_anim[0] = "./sproutxpm/im1.xpm";
-	data->anim.dest_anim[1] = "./sproutxpm/im2.xpm";
-	data->anim.dest_anim[2] = "./sproutxpm/im3.xpm";
-	data->anim.dest_anim[3] = "./sproutxpm/im4.xpm";
-	data->anim.dest_anim[4] = "./sproutxpm/im5.xpm";
-	data->anim.dest_anim[5] = "./sproutxpm/im6.xpm";
-	data->anim.dest_anim[6] = "./sproutxpm/im7.xpm";
-	data->anim.dest_anim[7] = "./sproutxpm/im8.xpm";
 
-	// data->anim.img_anim1 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim1, &data->img.width, &data->img.height);
-	// data->anim.img_anim2 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim2, &data->img.width, &data->img.height);
-	// data->anim.img_anim3 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim3, &data->img.width, &data->img.height);
-	// data->anim.img_anim4 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim4, &data->img.width, &data->img.height);
-	// data->anim.img_anim5 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim5, &data->img.width, &data->img.height);
-	// data->anim.img_anim6 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim6, &data->img.width, &data->img.height);
-	// data->anim.img_anim7 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim7, &data->img.width, &data->img.height);
-	// data->anim.img_anim8 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim8, &data->img.width, &data->img.height);
-	int i = 0;
-	while (i < 8)
-	{
-		data->anim.img_anim[i] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim[i], &data->img.width, &data->img.height);
-		i++;
-	}
+// void set_img_anim(t_data *data)
+// {
+// 	// data->anim.dest_anim1 = "./sproutxpm/im1.xpm";
+// 	// data->anim.dest_anim2 = "./sproutxpm/im2.xpm";
+// 	// data->anim.dest_anim3 = "./sproutxpm/im3.xpm";
+// 	// data->anim.dest_anim4 = "./sproutxpm/im4.xpm";
+// 	// data->anim.dest_anim5 = "./sproutxpm/im5.xpm";
+// 	// data->anim.dest_anim6 = "./sproutxpm/im6.xpm";
+// 	// data->anim.dest_anim7 = "./sproutxpm/im7.xpm";
+// 	// data->anim.dest_anim8 = "./sproutxpm/im8.xpm";
+// 	data->anim.dest_anim[0] = "./sproutxpm/im1.xpm";
+// 	data->anim.dest_anim[1] = "./sproutxpm/im2.xpm";
+// 	data->anim.dest_anim[2] = "./sproutxpm/im3.xpm";
+// 	data->anim.dest_anim[3] = "./sproutxpm/im4.xpm";
+// 	data->anim.dest_anim[4] = "./sproutxpm/im5.xpm";
+// 	data->anim.dest_anim[5] = "./sproutxpm/im6.xpm";
+// 	data->anim.dest_anim[6] = "./sproutxpm/im7.xpm";
+// 	data->anim.dest_anim[7] = "./sproutxpm/im8.xpm";
+
+// 	// data->anim.img_anim1 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim1, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim2 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim2, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim3 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim3, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim4 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim4, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim5 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim5, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim6 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim6, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim7 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim7, &data->img.width, &data->img.height);
+// 	// data->anim.img_anim8 = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim8, &data->img.width, &data->img.height);
+// 	int i = 0;
+// 	while (i < 8)
+// 	{
+// 		data->anim.img_anim[i] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim[i], &data->img.width, &data->img.height);
+// 		i++;
+// 	}
 	// data->anim.img_anim[0] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim1, &data->img.width, &data->img.height);
 	// data->anim.img_anim[1] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim2, &data->img.width, &data->img.height);
 	// data->anim.img_anim[2] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim3, &data->img.width, &data->img.height);
@@ -244,30 +244,42 @@ void set_img_anim(t_data *data)
 	// data->anim.img_anim[5] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim6, &data->img.width, &data->img.height);
 	// data->anim.img_anim[6] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim7, &data->img.width, &data->img.height);
 	// data->anim.img_anim[7] = mlx_xpm_file_to_image(data->mlx, data->anim.dest_anim8, &data->img.width, &data->img.height);
-}
+// }
 
-void set_anim_action(t_data *data)
-{
-	int i = 0;
-	while (i < 8)
-	{
-		mlx_put_image_to_window(data->mlx, data->mlx_win, data->anim.img_anim[i], data->img.width * data->player_y, data->img.height * data->player_x);
-		i++;
-	}
+// void set_anim_action(t_data *data)
+// {
+// 	int i = 0;
+// 	while (1)
+// 	{
+// 		while (i < 8)
+// 		{
+// 			// mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_exit_open,
+// 			// img->width * x, img->height * y);
+// 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->anim.img_anim[i], data->img.width * data->player_y, data->img.height * data->player_x);
+// 			i++;
+// 		}
+// 		i = 0;
+// 	}
 	// mlx_put_image_to_window(data->mlx, data->mlx_win, img->img_key, img->width * x, img->height * y);
-}
-*/
+// }
+
 void set_img(t_data *data)
 {
 	data->img.width = 64;
 	data->img.height = 64;
 	data->player_end = 0;
 	data->player_collect = 0;
+	data->img.img_grass = NULL;
+	data->img.img_wall = NULL;
+	data->img.img_char = NULL;
+	data->img.img_key = NULL;
+	data->img.img_exit = NULL;
+	data->img.img_exit_open = NULL;
 	data->img.dest_grass = "./sproutxpm/Sol.xpm";
 	data->img.img_grass = mlx_xpm_file_to_image(data->mlx, data->img.dest_grass, &data->img.width, &data->img.height);
 	if (!data->img.img_grass)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
@@ -276,7 +288,7 @@ void set_img(t_data *data)
 	data->img.img_wall = mlx_xpm_file_to_image(data->mlx, data->img.dest_wall, &data->img.width, &data->img.height);
 	if (!data->img.img_wall)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
@@ -285,7 +297,7 @@ void set_img(t_data *data)
 	data->img.img_char = mlx_xpm_file_to_image(data->mlx, data->img.dest_char, &data->img.width, &data->img.height);
 	if (!data->img.img_char)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+		ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
@@ -294,7 +306,7 @@ void set_img(t_data *data)
 	data->img.img_key = mlx_xpm_file_to_image(data->mlx, data->img.dest_key, &data->img.width, &data->img.height);
 	if (!data->img.img_key)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
@@ -303,7 +315,7 @@ void set_img(t_data *data)
 	data->img.img_exit = mlx_xpm_file_to_image(data->mlx, data->img.dest_exit, &data->img.width, &data->img.height);
 	if (!data->img.img_exit)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}
@@ -312,7 +324,7 @@ void set_img(t_data *data)
 	data->img.img_exit_open = mlx_xpm_file_to_image(data->mlx, data->img.dest_exit_open, &data->img.width, &data->img.height);
 	if (!data->img.img_exit_open)
 	{
-	    ft_printf("Erreur: Impossible de charger l'image XPM\n");
+	    ft_printf("Error\nXPM file invalid\n");
 	    on_destroy(data);
 	    exit(EXIT_FAILURE);
 	}

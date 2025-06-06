@@ -52,7 +52,7 @@ char	*ft_open(t_data *data, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Filename invalid");
+		ft_printf("Error\nFilename invalid\n");
 		exit(EXIT_FAILURE);
 	}	
 	data->map_height = 0;
@@ -91,7 +91,7 @@ void	ft_map_size(t_data *data, char **map)
 			{
 				if ((j + 1) != len)
 				{
-					ft_printf("Map dimmensions invalides");// a refaire TODO TODO
+					ft_printf("Error\nMap dimmensions invalides\n");// a refaire TODO TODO
 					ft_map_invalid(map);
 				}
 			}
@@ -103,11 +103,31 @@ void	ft_map_size(t_data *data, char **map)
 	data->map_length = len;
 }
 
+int ft_check_filename(char *filename)
+{
+	int i;
+
+	i = 0;
+	while (filename[i])
+		i++;
+	i = i - 4;
+	if (filename[i] == '.' && filename[i + 1] == 'b'
+		&&filename[i + 2] == 'e' &&filename[i + 3] == 'r')
+		return (0);
+	else
+		return (1);
+}
+
 char **ft_open_map(t_data *data, char *filename)
 {
 	char *str;
 	char **result;
 
+	if (ft_check_filename(filename) == 1)
+	{
+		ft_printf("Error\nFilename invalid\n");
+		exit(EXIT_FAILURE);
+	}
 	str = ft_open(data, filename);
 	result = ft_split(str, '\n');
 	ft_map_size(data, result);
@@ -127,14 +147,14 @@ int	ft_map_test_wall(t_data *data)
 		if (data->map[0][j] == '1' && data->map[data->map_height - 1][j] == '1')
 			j++;
 		else
-			return (ft_printf("Map mur invalide"), (1)); //erreur todo a refaire
+			return (ft_printf("Error\nMap mur invalide\n"), (1)); //erreur todo a refaire
 	}
 	while (i < data->map_height)
 	{
 		if (data->map[i][0] == '1' && data->map[i][data->map_length - 1] == '1')
 			i++;
 		else
-			return (ft_printf("Map mur invalide"), 1); //erreur todo a refaire
+			return (ft_printf("Error\nMap mur invalide\n"), 1); //erreur todo a refaire
 	}
 	return (0);
 }
@@ -142,7 +162,7 @@ int	ft_map_test_wall(t_data *data)
 int	ft_map_check_components_double(t_data *data)
 {
 	if (data->count_e != 1 || data->count_p != 1 || data->count_c < 1)
-		return (ft_printf("Map components invalides"), 1); //TODO ERREUR
+		return (ft_printf("Error\nMap components invalides\n"), 1); //TODO ERREUR
 	else
 		return (0);
 }
@@ -173,7 +193,7 @@ int	ft_map_check_components(t_data *data)
 			else if (data->map[i][j] == 'C')
 				data->count_c++;
 			else if (data->map[i][j] != '0' && data->map[i][j] != '1')
-				return (ft_printf("Components non autorises"), 1); //TODO ERREUR
+				return (ft_printf("Error\nComponents non autorises\n"), 1); //TODO ERREUR
 			j++;
 		}
 		j = 0;
@@ -293,7 +313,7 @@ int ft_check_path(t_data *data)
 	}
 	else
 	{
-		ft_printf("No Path To Exit\n");
+		ft_printf("Error\nNo Path To Exit\n");
 		ft_free_double_tab(temp);
 		return (1);
 	}

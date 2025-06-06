@@ -54,34 +54,34 @@ typedef struct s_image
 	int height;//set
 }t_image;
 
-// typedef struct s_anim
-// {
-// 	// void *img_anim1;
-// 	// void *img_anim2;
-// 	// void *img_anim3;
-// 	// void *img_anim4;
-// 	// void *img_anim5;
-// 	// void *img_anim6;
-// 	// void *img_anim7;
-// 	// void *img_anim8;
-// 	// char *dest_anim1;
-// 	// char *dest_anim2;
-// 	// char *dest_anim3;
-// 	// char *dest_anim4;
-// 	// char *dest_anim5;
-// 	// char *dest_anim6;
-// 	// char *dest_anim7;
-// 	// char *dest_anim8;
-// 	void *img_anim[8];
-// 	char *dest_anim[8];
-// }t_anim;
+typedef struct s_anim
+{
+	// void *img_anim1;
+	// void *img_anim2;
+	// void *img_anim3;
+	// void *img_anim4;
+	// void *img_anim5;
+	// void *img_anim6;
+	// void *img_anim7;
+	// void *img_anim8;
+	// char *dest_anim1;
+	// char *dest_anim2;
+	// char *dest_anim3;
+	// char *dest_anim4;
+	// char *dest_anim5;
+	// char *dest_anim6;
+	// char *dest_anim7;
+	// char *dest_anim8;
+	void *img_anim[8];
+	char *dest_anim[8];
+}t_anim;
 
-// typedef struct s_map
-// {
-// 	int count_e;
-// 	int count_p;
-// 	int count_c;
-// }t_map;
+typedef struct s_map
+{
+	int count_e;
+	int count_p;
+	int count_c;
+}t_map;
 
 typedef struct s_data
 {
@@ -100,7 +100,7 @@ typedef struct s_data
 	int exit_x;//set
 	int exit_y;//set
 	t_image	img;
-	// t_anim anim;
+	t_anim anim;
 }t_data;
 
 
