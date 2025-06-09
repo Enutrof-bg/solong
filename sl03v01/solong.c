@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 			return (1);
 		data.mlx_win = mlx_new_window(data.mlx,
 				TILE_SIZE * data.map_length,
-				TILE_SIZE * data.map_height, "Dark Souls III");
+				TILE_SIZE * data.map_height, "so_long");
 		if (!data.mlx_win)
 		{
 			mlx_destroy_display(data.mlx);
@@ -37,4 +37,6 @@ int	main(int argc, char **argv)
 		ft_printf_map(&data);
 		mlx_loop(data.mlx);
 	}
+	else
+		return (ft_printf("Error\n2 arg expected\n"), 0);
 }

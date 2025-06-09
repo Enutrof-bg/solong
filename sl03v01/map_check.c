@@ -27,10 +27,10 @@ void	ft_map_check(t_data *data, char *filename)
 	data->map = ft_open_map(data, filename);
 	if (!(data->map))
 		exit(EXIT_FAILURE);
-	if ((data->map_height == 0 && data->map_length == 0))
+	if ((data->map_height >= 22 || data->map_length >= 41))
 	{
-		ft_printf("Error\nMap invalid\n");
-		exit(EXIT_FAILURE);
+		ft_printf("Error\nMap too big\n");
+		ft_map_invalid(data->map);
 	}
 	if (ft_map_test_wall(data) == 1)
 		ft_map_invalid(data->map);

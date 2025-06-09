@@ -30,7 +30,7 @@ void	ft_set_ennemy(t_data *data)
 
 void	ft_set_ennemy_mort(t_data *data)
 {
-	data->ennemy_mort_x = 4;
+	data->ennemy_mort_x = 3;
 	data->ennemy_mort_y = 4;
 	print_img_ennemy_mort(data,
 		&data->img, data->ennemy_mort_y, data->ennemy_mort_x);

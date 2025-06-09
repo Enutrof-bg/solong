@@ -12,55 +12,12 @@
 
 #include "get_next_line.h"
 
-char	*ft_str_return(char *str)
+void	ft_read_error(char *charread, char *str)
 {
-	int		i;
-	int		j;
-	char	*newstr;
-
-	i = 0;
-	j = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	newstr = malloc(sizeof(char) * (i + 1));
-	if (!newstr)
-		return (NULL);
-	while (j < i)
-	{
-		newstr[j] = str[j];
-		j++;
-	}
-	newstr[j] = '\0';
-	return (newstr);
-}
-
-char	*ft_str_reste(char *str)
-{
-	int		i;
-	int		j;
-	char	*newstr;
-
-	i = 0;
-	j = 0;
-	while (str[i] != '\0' && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	while (str[i + j] != '\0')
-		j++;
-	newstr = malloc(sizeof(char) * (j + 1));
-	if (!newstr)
-		return (NULL);
-	j = 0;
-	while (str[i + j])
-	{
-		newstr[j] = str[i + j];
-		j++;
-	}
-	newstr[j] = '\0';
-	return (newstr);
+	free(charread);
+	free(str);
+	printf("Error\nMap empty\n");
+	exit(EXIT_FAILURE);
 }
 
 char	*ft_read(int fd, char *str)
@@ -73,6 +30,8 @@ char	*ft_read(int fd, char *str)
 	if (!charread)
 		return (NULL);
 	readfd = read(fd, charread, BUFFER_SIZE);
+	if (readfd == 0)
+		ft_read_error(charread, str);
 	while (readfd > 0)
 	{
 		charread[readfd] = '\0';
@@ -81,7 +40,7 @@ char	*ft_read(int fd, char *str)
 			return (NULL);
 		free(str);
 		str = temp;
-		if (ft_check(charread, '\n') == 1)
+		if (ft_check(charread, '\0') == 1)
 			break ;
 		readfd = read(fd, charread, BUFFER_SIZE);
 	}
@@ -89,22 +48,9 @@ char	*ft_read(int fd, char *str)
 	return (ft_erreur(readfd, str));
 }
 
-char	*ft_reste(char *str)
-{
-	char	*temp;
-
-	temp = ft_str_reste(str);
-	if (!temp)
-		return (NULL);
-	free(str);
-	str = temp;
-	return (str);
-}
-
 char	*get_next_line(int fd)
 {
-	static char		*str;
-	char			*strreturn;
+	static char	*str;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
@@ -117,15 +63,7 @@ char	*get_next_line(int fd)
 	str = ft_read(fd, str);
 	if (!str)
 		return (NULL);
-	strreturn = ft_str_return(str);
-	if (!strreturn)
-		return (NULL);
-	str = ft_reste(str);
-	if (!str)
-		return (NULL);
-	if (str && str[0] == '\0')
-		return (free(str), str = NULL, strreturn);
-	return (strreturn);
+	return (str);
 }
 
 // int main()
@@ -142,15 +80,16 @@ char	*get_next_line(int fd)
 
 // 	// printf("fd :%d\n", fd);
 //     char *line;
-//     int i = 0;
-//     do {
-//     	line = get_next_line(fd);
-//     	printf("[%d] '%s'\n", i++, line);
-//     	free(line);
-// 	} while (line != NULL);
+//     // int i = 0;
+//     // do {
+//     // 	line = get_next_line(fd);
+//     // 	printf("[%d] '%s'\n", i++, line);
+//     // 	free(line);
+// 	// } while (line != NULL);
 // 	line = get_next_line(fd);
-//     printf("[%d] '%s'\n", i++, line);
+//     printf("'%s'\n", line);
 //     free(line);
+//     close(fd);
 // }
 
 	// char *newstr = get_next_line(fd);

@@ -14,7 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 MLX = -Lminilibx-linux -lmlx -lX11 -lXext
-DIRGNL = gnl
+DIRGNL = gnltest
 DIRPRINT = ft_printf
 
 FILE = solong.c solong_utils.c solong_free.c solong_init.c solong_move.c \
@@ -27,13 +27,13 @@ SRC = ${FILE:.c=.o}
 
 NAME = so_long
 
-FILEBONUS = solong.c solong_utils.c solong_free.c solong_init.c solong_move_bonus.c solong_move_ennemy_bonus.c\
+FILEBONUS = solong.c solong_utils.c solong_free.c solong_init_bonus.c solong_move_bonus.c solong_move_ennemy_bonus.c\
 solong_print_img.c solong_print_img2.c solong_init_xpm.c solong_init_xpm2.c solong_init_xpm_bonus.c solong_print_ennemy_bonus.c\
 map_check.c map_check_compo.c map_check_free.c map_check_open.c map_check_path.c \
 ft_split.c ft_itoa.c \
 ${DIRGNL}/get_next_line.c ${DIRGNL}/get_next_line_utils.c \
 
-BONUS = so_long_bonus
+NAMEBONUS = so_long_bonus
 
 SRCBONUS = ${FILEBONUS:.c=.o}
 
@@ -50,10 +50,12 @@ ${NAME} : ${SRC} ${FILEPRINTF}
 %.o:%.c
 	${CC} ${CFLAGS} -c $< -o $@
 
-bonus : ${SRCBONUS} ${FILEPRINTF}
+bonus: ${NAMEBONUS}
+
+${NAMEBONUS} : ${SRCBONUS} ${FILEPRINTF}
 	make -C minilibx-linux
 	make -C ft_printf
-	${CC} ${CFLAGS} $^ ${MLX} -o solong_bonus
+	${CC} ${CFLAGS} $^ ${MLX} -o so_long_bonus
 
 ${BONUS}:
 
@@ -62,13 +64,15 @@ clean:
 	solong_print_img.o solong_print_img2.o solong_init_xpm.o solong_init_xpm2.o \
 	map_check.o map_check_compo.o map_check_free.o map_check_open.o map_check_path.o \
 	ft_split.o ft_itoa.o \
-	${DIRGNL}/get_next_line.o ${DIRGNL}/get_next_line_utils.o\
-	solong_move_bonus.o solong_move_ennemy_bonus.o solong_init_xpm_bonus.o solong_print_ennemy_bonus.o
+	${DIRGNL}/get_next_line.o ${DIRGNL}/get_next_line_utils.o \
+	solong_move_bonus.o solong_move_ennemy_bonus.o solong_init_xpm_bonus.o \
+	solong_print_ennemy_bonus.o solong_init_bonus.o 
 	make fclean -C ft_printf
 # 	make fclean -C minilibx-linux
 
 fclean: clean
 	rm -f so_long
+	rm -f so_long_bonus
 
 re: fclean
 	make

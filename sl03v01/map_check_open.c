@@ -12,29 +12,21 @@
 
 #include "solong.h"
 
-char	*ft_return_gnl(char **str, char **result, char **temp, int *fd)
+int	ft_check_newline(char *str)
 {
-	while (*str)
-	{
-		*temp = ft_strjoin(*result, *str);
-		if (!(*temp))
-			return (NULL);
-		free(*result);
-		*result = NULL;
-		*result = *temp;
-		free(*str);
-		*str = NULL;
-		*str = get_next_line(*fd);
-	}
-	close(*fd);
-	return (*result);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (str[0] != '1' || str[i - 1] != '1')
+		return (1);
+	return (0);
 }
 
 char	*ft_open(t_data *data, char *filename)
 {
 	char	*str;
-	char	*result;
-	char	*temp;
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
@@ -44,16 +36,11 @@ char	*ft_open(t_data *data, char *filename)
 		exit(EXIT_FAILURE);
 	}	
 	data->map_height = 0;
-	result = ft_strdup("");
-	if (!result)
-		return (NULL);
 	str = get_next_line(fd);
 	if (!str)
-	{
-		free(result);
 		return (NULL);
-	}
-	return (ft_return_gnl(&str, &result, &temp, &fd));
+	close(fd);
+	return (str);
 }
 
 int	ft_check_filename(char *filename)
@@ -84,10 +71,16 @@ char	**ft_open_map(t_data *data, char *filename)
 	str = ft_open(data, filename);
 	if (!str)
 		return (NULL);
+	if (ft_check_newline(str) == 1)
+	{
+		free(str);
+		ft_printf("Error\nMap invalid\n");
+		exit(EXIT_FAILURE);
+	}
 	result = ft_split(str, '\n');
 	if (!result)
-		return (NULL);
-	ft_map_size(data, result);
+		return (free(str), NULL);
 	free(str);
+	ft_map_size(data, result);
 	return (result);
 }
