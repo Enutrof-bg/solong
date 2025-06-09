@@ -28,7 +28,8 @@ SRC = ${FILE:.c=.o}
 NAME = so_long
 
 FILEBONUS = solong.c solong_utils.c solong_free.c solong_init_bonus.c solong_move_bonus.c solong_move_ennemy_bonus.c\
-solong_print_img.c solong_print_img2.c solong_init_xpm.c solong_init_xpm2.c solong_init_xpm_bonus.c solong_print_ennemy_bonus.c\
+solong_print_img.c solong_print_img2.c solong_init_xpm.c solong_init_xpm2.c solong_init_xpm_bonus.c \
+solong_print_ennemy_bonus.c solong_move_ennemy_mort_bonus.c \
 map_check.c map_check_compo.c map_check_free.c map_check_open.c map_check_path.c \
 ft_split.c ft_itoa.c \
 ${DIRGNL}/get_next_line.c ${DIRGNL}/get_next_line_utils.c \
@@ -66,9 +67,8 @@ clean:
 	ft_split.o ft_itoa.o \
 	${DIRGNL}/get_next_line.o ${DIRGNL}/get_next_line_utils.o \
 	solong_move_bonus.o solong_move_ennemy_bonus.o solong_init_xpm_bonus.o \
-	solong_print_ennemy_bonus.o solong_init_bonus.o 
+	solong_print_ennemy_bonus.o solong_init_bonus.o solong_move_ennemy_mort_bonus.o
 	make fclean -C ft_printf
-# 	make fclean -C minilibx-linux
 
 fclean: clean
 	rm -f so_long

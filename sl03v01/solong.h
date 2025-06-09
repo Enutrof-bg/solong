@@ -154,16 +154,23 @@ void	print_img_exit(t_data *data, t_image *img, int x, int y);
 
 //solong_print_img2.c
 void	print_img_exit_open(t_data *data, t_image *img, int x, int y);
-void	ft_ennemy_move(t_data *data);
-void	print_img_ennemy(t_data *data, t_image *img, int x, int y);
+
+//solong_init_xpm_bonus.c
 void	ft_get_img_ennemy(t_data *data);
-void	ft_check_dead(t_data *data);
-void	print_img_ennemy_mort(t_data *data, t_image *img, int x, int y);
-void	ft_ennemy_move_mort(t_data *data);
 void	ft_get_img_ennemy_mort(t_data *data);
+
+//solong_move_ennemy_bonus.c
 void	ft_set_ennemy(t_data *data);
+void	ft_ennemy_move(t_data *data);
+
+//solong_move_ennemy_mort_bonus.c
 void	ft_set_ennemy_mort(t_data *data);
-void	ft_check_dead_mort(t_data *data);
-// void 	ft_ennemy_move_updown(t_data *data);
+void	ft_ennemy_move_mort(t_data *data);
+
+//solong_print_ennemy_bonus.c
+void	print_img_ennemy(t_data *data, t_image *img, int x, int y);
+void	print_img_ennemy_mort(t_data *data, t_image *img, int x, int y);
+void	ft_move_all_ennemy(t_data *data);
+void	ft_check_dead(t_data *data);
 
 #endif

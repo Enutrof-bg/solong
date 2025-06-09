@@ -12,15 +12,6 @@
 
 #include "solong.h"
 
-void	ft_check_dead(t_data *data)
-{
-	if (data->player_x == data->ennemy_x && data->player_y == data->ennemy_y)
-		on_destroy(data);
-	if (data->player_x == data->ennemy_mort_x
-		&& data->player_y == data->ennemy_mort_y)
-		on_destroy(data);
-}
-
 void	ft_set_ennemy(t_data *data)
 {
 	data->ennemy_x = 10;
@@ -28,12 +19,24 @@ void	ft_set_ennemy(t_data *data)
 	print_img_ennemy(data, &data->img, data->ennemy_y, data->ennemy_x);
 }
 
-void	ft_set_ennemy_mort(t_data *data)
+void ft_ennemy_move_2(t_data *data, int move)
 {
-	data->ennemy_mort_x = 3;
-	data->ennemy_mort_y = 4;
-	print_img_ennemy_mort(data,
-		&data->img, data->ennemy_mort_y, data->ennemy_mort_x);
+	if (move < 5)
+	{
+		if ((data->ennemy_y != data->player_y)
+			|| (data->ennemy_x != data->player_x))
+			print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
+		print_img_ennemy(data, &data->img, data->ennemy_y + 1, data->ennemy_x);
+		data->ennemy_y++;
+	}
+	else if (move < 10)
+	{
+		if ((data->ennemy_y != data->player_y)
+			|| (data->ennemy_x != data->player_x))
+			print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
+		print_img_ennemy(data, &data->img, data->ennemy_y - 1, data->ennemy_x);
+		data->ennemy_y--;
+	}
 }
 
 void	ft_ennemy_move(t_data *data)
@@ -48,58 +51,6 @@ void	ft_ennemy_move(t_data *data)
 	}
 	if (move >= 10)
 		move = 0;
-	if (move < 5)
-	{
-		if ((data->ennemy_y != data->player_y)
-			|| (data->ennemy_x != data->player_x))
-			print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
-		print_img_ennemy(data, &data->img, data->ennemy_y + 1, data->ennemy_x);
-		data->ennemy_y++;
-		move++;
-	}
-	else if (move < 10)
-	{
-		if ((data->ennemy_y != data->player_y)
-			|| (data->ennemy_x != data->player_x))
-			print_img_grass(data, &data->img, data->ennemy_y, data->ennemy_x);
-		print_img_ennemy(data, &data->img, data->ennemy_y - 1, data->ennemy_x);
-		data->ennemy_y--;
-		move++;
-	}
-}
-
-void	ft_ennemy_move_mort(t_data *data)
-{
-	int static	set = 0;
-	int static	move = 0;
-
-	if (set == 0)
-	{
-		ft_set_ennemy_mort(data);
-		set = 1;
-	}
-	if (move >= 12)
-		move = 0;
-	if (move < 6)
-	{
-		if ((data->ennemy_mort_y != data->player_y)
-			|| (data->ennemy_mort_x != data->player_x))
-			print_img_grass(data,
-				&data->img, data->ennemy_mort_y, data->ennemy_mort_x);
-		print_img_ennemy_mort(data,
-			&data->img, data->ennemy_mort_y, data->ennemy_mort_x + 1);
-		data->ennemy_mort_x++;
-		move++;
-	}
-	else if (move < 12)
-	{
-		if ((data->ennemy_mort_y != data->player_y)
-			|| (data->ennemy_mort_x != data->player_x))
-			print_img_grass(data,
-				&data->img, data->ennemy_mort_y, data->ennemy_mort_x);
-		print_img_ennemy_mort(data,
-			&data->img, data->ennemy_mort_y, data->ennemy_mort_x - 1);
-		data->ennemy_mort_x--;
-		move++;
-	}
+	ft_ennemy_move_2(data, move);
+	move++;
 }

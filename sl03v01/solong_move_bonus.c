@@ -12,14 +12,6 @@
 
 #include "solong.h"
 
-void ft_move_all_ennemy(t_data *data)
-{
-	ft_check_dead(data);
-	ft_ennemy_move(data);
-	ft_ennemy_move_mort(data);
-	ft_check_dead(data);
-}
-
 int	ft_move_up(t_data *data)
 {
 	if (data->map[data->player_x - 1][data->player_y] != '1')
