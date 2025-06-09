@@ -20,7 +20,7 @@ void	ft_set_ennemy_mort(t_data *data)
 		&data->img, data->ennemy_mort_y, data->ennemy_mort_x);
 }
 
-void ft_ennemy_move_mort_2(t_data *data, int move)
+void	ft_ennemy_move_mort_2(t_data *data, int move)
 {
 	if (move < 6)
 	{

@@ -19,7 +19,7 @@ void	ft_set_ennemy(t_data *data)
 	print_img_ennemy(data, &data->img, data->ennemy_y, data->ennemy_x);
 }
 
-void ft_ennemy_move_2(t_data *data, int move)
+void	ft_ennemy_move_2(t_data *data, int move)
 {
 	if (move < 5)
 	{
