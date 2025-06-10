@@ -12,6 +12,30 @@
 
 #include "solong.h"
 
+void	set_img_bonus(t_data *data)
+{
+	data->img.img_ennemy = NULL;
+	data->img.img_ennemy_mort = NULL;
+	ft_get_img_ennemy(data);
+	ft_get_img_ennemy_mort(data);
+	data->anim.img_anim1 = NULL;
+	data->anim.img_anim2 = NULL;
+	data->anim.img_anim3 = NULL;
+	data->anim.img_anim4 = NULL;
+	ft_get_img_anim1(data);
+	ft_get_img_anim2(data);
+	ft_get_img_anim3(data);
+	ft_get_img_anim4(data);
+	data->anim.img_key_anim1 = NULL;
+	data->anim.img_key_anim2 = NULL;
+	data->anim.img_key_anim3 = NULL;
+	data->anim.img_key_anim4 = NULL;
+	ft_get_img_key_anim1(data);
+	ft_get_img_key_anim2(data);
+	ft_get_img_key_anim3(data);
+	ft_get_img_key_anim4(data);
+}
+
 void	set_img(t_data *data)
 {
 	data->img.width = 64;
@@ -20,8 +44,6 @@ void	set_img(t_data *data)
 	data->player_collect = 0;
 	data->ennemy_x = 10;
 	data->ennemy_y = 10;
-	data->img.img_ennemy = NULL;
-	data->img.img_ennemy_mort = NULL;
 	data->img.img_grass = NULL;
 	data->img.img_wall = NULL;
 	data->img.img_char = NULL;
@@ -34,8 +56,7 @@ void	set_img(t_data *data)
 	ft_get_img_key(data);
 	ft_get_img_exit(data);
 	ft_get_img_exit_open(data);
-	ft_get_img_ennemy(data);
-	ft_get_img_ennemy_mort(data);
+	set_img_bonus(data);
 }
 
 void	ft_printf_map(t_data *data)

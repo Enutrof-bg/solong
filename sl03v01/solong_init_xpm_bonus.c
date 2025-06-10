@@ -14,7 +14,7 @@
 
 void	ft_get_img_ennemy(t_data *data)
 {
-	data->img.dest_ennemy = "./sproutxpm/ennemy.xpm";
+	data->img.dest_ennemy = "./textures/ennemy.xpm";
 	data->img.img_ennemy = mlx_xpm_file_to_image(data->mlx,
 			data->img.dest_ennemy, &data->img.width, &data->img.height);
 	if (!data->img.img_ennemy)
@@ -27,7 +27,7 @@ void	ft_get_img_ennemy(t_data *data)
 
 void	ft_get_img_ennemy_mort(t_data *data)
 {
-	data->img.dest_ennemy_mort = "./sproutxpm/mort.xpm";
+	data->img.dest_ennemy_mort = "./textures/mort.xpm";
 	data->img.img_ennemy_mort = mlx_xpm_file_to_image(data->mlx,
 			data->img.dest_ennemy_mort, &data->img.width, &data->img.height);
 	if (!data->img.img_ennemy_mort)

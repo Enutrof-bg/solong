@@ -61,6 +61,26 @@ typedef struct s_image
 	int		height;
 }t_image;
 
+typedef struct s_anim
+{
+	char	*dest_anim1;
+	char	*dest_anim2;
+	char	*dest_anim3;
+	char	*dest_anim4;
+	void	*img_anim1;
+	void	*img_anim2;
+	void	*img_anim3;
+	void	*img_anim4;
+	char	*dest_key_anim1;
+	char	*dest_key_anim2;
+	char	*dest_key_anim3;
+	char	*dest_key_anim4;
+	void	*img_key_anim1;
+	void	*img_key_anim2;
+	void	*img_key_anim3;
+	void	*img_key_anim4;
+}t_anim;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -82,6 +102,7 @@ typedef struct s_data
 	int		exit_x;
 	int		exit_y;
 	t_image	img;
+	t_anim	anim;
 }t_data;
 
 //solong_utils.c
@@ -121,6 +142,11 @@ void	ft_map_path(t_data *data, char **map);
 int		ft_map_key_path(char **map);
 int		ft_check_path(t_data *data);
 
+//solong_anim.c
+int		ft_anim(t_data *data);
+void	ft_anim_key(t_data *data, int frame);
+void	ft_anim_key_print(t_data *data, int frame, int i, int j);
+
 //solong_free.c
 int		on_destroy(t_data *data);
 
@@ -158,6 +184,18 @@ void	print_img_exit_open(t_data *data, t_image *img, int x, int y);
 //solong_init_xpm_bonus.c
 void	ft_get_img_ennemy(t_data *data);
 void	ft_get_img_ennemy_mort(t_data *data);
+
+//solong_init_xpm_char_bonus.c
+void	ft_get_img_anim1(t_data *data);
+void	ft_get_img_anim2(t_data *data);
+void	ft_get_img_anim3(t_data *data);
+void	ft_get_img_anim4(t_data *data);
+
+//solong_init_xpm_key_bonus.c  
+void	ft_get_img_key_anim1(t_data *data);
+void	ft_get_img_key_anim2(t_data *data);
+void	ft_get_img_key_anim3(t_data *data);
+void	ft_get_img_key_anim4(t_data *data);
 
 //solong_move_ennemy_bonus.c
 void	ft_set_ennemy(t_data *data);

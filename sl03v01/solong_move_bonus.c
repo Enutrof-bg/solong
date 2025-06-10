@@ -123,6 +123,7 @@ int	ft_move_right(t_data *data)
 int	on_keypress(int keysym, t_data *data)
 {
 	static int	count = 0;
+	char		*temp;
 
 	if (keysym == KEY_ESC)
 		on_destroy(data);
@@ -135,6 +136,10 @@ int	on_keypress(int keysym, t_data *data)
 	if (keysym == KEY_D || keysym == KEY_RIGHT)
 		count = count + ft_move_right(data);
 	ft_printf("PM:%d\n", count);
+	temp = ft_itoa(count);
+	print_img_wall(data, &data->img, 0, 0);
+	mlx_string_put(data->mlx, data->mlx_win, 32, 32, 0x00FF0000, temp);
+	free(temp);
 	if (data->player_end == 1)
 		on_destroy(data);
 	return (0);

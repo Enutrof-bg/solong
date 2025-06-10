@@ -14,7 +14,7 @@
 
 void	ft_get_img_exit_open(t_data *data)
 {	
-	data->img.dest_exit_open = "./sproutxpm/open.xpm";
+	data->img.dest_exit_open = "./textures/open.xpm";
 	data->img.img_exit_open = mlx_xpm_file_to_image(data->mlx,
 			data->img.dest_exit_open, &data->img.width, &data->img.height);
 	if (!data->img.img_exit_open)
